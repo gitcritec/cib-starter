@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.logo-cotainner {
+    width: 175px;
+    height: 150px;
+}
+
+header {
+    height: 88px;
+}
