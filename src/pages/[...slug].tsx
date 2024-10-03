@@ -4,9 +4,10 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
 import { fetchPageData } from '@/utils/api';
-import { Metadata, PageApiComplete } from "@/types";
+import { Metadata, PageApiComplete, PageInfo, SectionData } from "@/types";
 import Header from '@/app/components/layouts/header';
 import Footer from '@/app/components/layouts/footer';
+import Section from '@/app/components/layouts/section';
 
 interface DynamicPageProps {
     content: PageApiComplete;
@@ -14,7 +15,8 @@ interface DynamicPageProps {
 }
 
 export default function DynamicPage({ content, metadata }: DynamicPageProps) {
-
+    const pageInfo: PageInfo = content.page.pageinfo;
+    const page = content.page;
 
     return (
         <>
@@ -38,19 +40,27 @@ export default function DynamicPage({ content, metadata }: DynamicPageProps) {
                 <meta name="twitter:image" content={metadata.twitter.image} />
                 <meta name="twitter:site" content={metadata.twitter.site} />
             </Head>
-            <Header
-                logo={content.config.LOGO || 'defaultLogo.png'}
-                menus={content.all_menus || {}}
-                allLangsActives={content.allLangsActives || {}}
-                lang_id={content.lang_id}
-            />
-            <div style={{ margin: '20px' }}>
-                <h1>{content.config.NAME}</h1>
-                <p>{content.description}</p>
-            </div>
-            <Footer
-               
-            />
+            {pageInfo.HEADER == 1 &&
+                <Header
+                    logo={content.config.LOGO || 'defaultLogo.png'}
+                    menus={content.all_menus || {}}
+                    allLangsActives={content.allLangsActives || {}}
+                    lang_id={content.lang_id}
+                />
+            }
+
+            {
+                page.sections &&
+                page.sections.map((section: SectionData) => (
+                    <Section
+                        key={section.SECTION_ID}
+                        sectionData={section}
+                        lang_id={content.lang_id}
+                    />
+                ))
+            }
+
+            {pageInfo.FOOTER == 1 && <Footer />}
         </>
     );
 }
@@ -124,7 +134,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const name = slugArray.length > 2 ? slugArray[2] : undefined; // '5'
 
     const content = await fetchPageData(pageSlug, idElement, name);
-    console.log(content);
+
     // Verifica se há um erro e retorna um status 404
     if (!content || Number(content.error) === 1) {
         return { notFound: true };
@@ -134,7 +144,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     // Usa os dados da página para gerar os metadados
     const metadata = await generateMetadata(content);
-
+    console.log(content.page.sections);
     return {
         props: {
             content: content,

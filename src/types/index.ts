@@ -103,11 +103,11 @@ interface Language {
     STATUS: string;
 }
 
-interface PageInfo {
-    PAGE_ID: string;
-    STATUS: string;
-    HEADER: string;
-    FOOTER: string;
+export interface PageInfo {
+    PAGE_ID: number;
+    STATUS: number;
+    HEADER: number;
+    FOOTER: number;
     created_at: string;
     updated_at: string;
 }
@@ -121,7 +121,7 @@ interface PageLang {
     updated_at: string | null;
 }
 
-interface Section {
+export interface SectionData {
     ID: string;
     SECTION_ID: string;
     LANGUAGE_ID: string;
@@ -144,6 +144,6 @@ interface Section {
 interface Page {
     pageinfo: PageInfo;
     pagelang: PageLang[];
-    sections: Section[];
+    sections: SectionData[];
     id: string;
 }
