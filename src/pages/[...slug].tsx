@@ -55,7 +55,6 @@ export default function DynamicPage({ content, metadata }: DynamicPageProps) {
                     <Section
                         key={section.SECTION_ID}
                         sectionData={section}
-                        lang_id={content.lang_id}
                     />
                 ))
             }
@@ -80,7 +79,7 @@ async function generateMetadata(pageData: PageApiComplete) {
     const url = `${process.env.NEXT_PUBLIC_SITE_URL}/${pageData.menu_lang.URL}`;
 
     // URL padrão para favicon, com fallback para um favicon local se não estiver disponível
-    const faviconUrl = companyConfig.FAVICON ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/company/${companyConfig.FAVICON}` : "../favicon.ico";
+    const faviconUrl = companyConfig.FAVICON ? `${companyConfig.FAVICON}` : "../favicon.ico";
 
     // Montando a base dos metadados
     const metadata = {

@@ -16,7 +16,7 @@ const Header = ({ logo, menus, allLangsActives, lang_id }: HeaderProps) => {
                 <Link href={"/" + headerMenu[0].URL} className="flex items-center space-x-2">
                     <div className="bg-white shadow-lg absolute top-0 logo-cotainner">
                         <Image
-                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/company/${logo}`}
+                            src={`${logo}`}
                             alt="Dinamic Image"
                             fill
                             style={{ objectFit: 'contain', objectPosition: 'center center' }}

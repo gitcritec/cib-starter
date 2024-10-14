@@ -4,13 +4,12 @@ import dynamic from "next/dynamic";
 
 interface SectionTemplateProps {
     sectionData: SectionData;
-    langId: string;
 }
 
-const Section = ({ sectionData, lang_id }: { sectionData: SectionData; lang_id: string }) => {
+const Section = ({ sectionData }: { sectionData: SectionData; }) => {
     const DynamicComponent = dynamic<SectionTemplateProps>(() => import(`../templates/${sectionData.TEAMPLATE}`));
 
-    return <DynamicComponent sectionData={sectionData} langId={lang_id} />;
+    return <DynamicComponent sectionData={sectionData} />;
 };
 
 export default Section;

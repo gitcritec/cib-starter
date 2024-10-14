@@ -27,21 +27,6 @@ export interface Metadata {
     };
 }
 
-// export interface MenuItem {
-//     MENU_ID: number;
-//     PAGE_ID: number;
-//     PARENT_ID: number;
-//     M_NAME: string;
-//     URL: string;
-//     MENU_LANG_ID: number;
-//     LANGUAGE_ID: number;
-//     TITLE_SEO: string;
-//     DESCRIPTION_SEO: string;
-//     KEYWORDS_SEO: string;
-//     STATUS: number;
-//     ORDER: number;
-// }
-
 export interface PageProps {
     content: {
         title: string;
@@ -136,9 +121,45 @@ export interface SectionData {
     DESTAQUE: string;
     TYPE: string;
     ITEMID: string | null;
+    ARTICLES: Article[] | [];
+    FILES: FileType[] | [];
     CUSTOMCAMPS: Record<string, unknown> | null;  // Defina um tipo mais específico se conhecer a estrutura
     created_at: string;
     updated_at: string;
+}
+
+export interface Article {
+    ARTICLE_ID: number;
+    AUTHOR: string;
+    CATEGORY: number;
+    CUSTOMCAMPS: string;
+    CUSTOMCAMPSLANGS: string;
+    DATE: string;
+    DESCRIPTION_SEO: string;
+    DESTAQUE: string;
+    ID: number;
+    LANGUAGE_ID: number;
+    NAME_SEO: string;
+    ORDER: number;
+    STATUS: number;
+    TEAMPLATE: string;
+    TEXT_2: string;
+    TEXT_3: string;
+    TEXT_4: string;
+    TEXT_5: string;
+    TEXT_SEO: string;
+    FILES: FileType[] | [];
+}
+
+export interface FileType {
+    ASSOCIATION: string;
+    CODE: string;
+    FILE: string;
+    FILE_ID: number;
+    IMAGENAME: string;
+    ISIMAGE: string;
+    TYPE: string;
+    FULL_URL: string;
 }
 
 interface Page {
