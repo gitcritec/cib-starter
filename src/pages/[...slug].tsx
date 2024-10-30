@@ -79,7 +79,7 @@ async function generateMetadata(pageData: PageApiComplete) {
     const url = `${process.env.NEXT_PUBLIC_SITE_URL}/${pageData.menu_lang.URL}`;
 
     // URL padrão para favicon, com fallback para um favicon local se não estiver disponível
-    const faviconUrl = companyConfig.FAVICON ? `${companyConfig.FAVICON}` : "../favicon.ico";
+    const faviconUrl = companyConfig.FAVICON ? `${companyConfig.FAVICON}` : "../app/favicon.ico";
 
     // Montando a base dos metadados
     const metadata = {

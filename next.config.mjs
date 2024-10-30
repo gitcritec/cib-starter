@@ -6,7 +6,12 @@ const nextConfig = {
         BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
     },
     images: {
-        domains: ['www.critecws.com'],  // Adicione outros domínios conforme necessário
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'www.critecws.com',
+            }
+        ]
     },
 };
 
