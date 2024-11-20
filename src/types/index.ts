@@ -56,6 +56,9 @@ export interface HeaderProps {
     allLangsActives: Language[];  // Garantindo que o tipo correto seja usado
     lang_id: string;
 }
+export interface FooterProps {
+    menus: MenuLang[];  // Garantindo que o tipo correto seja usado
+}
 export interface LanguageSelectorProps {
     allLangsActives: Language[];  // Garantindo que o tipo correto seja usado
     lang_id: string;
@@ -123,9 +126,67 @@ export interface SectionData {
     ITEMID: string | null;
     ARTICLES: Article[] | [];
     FILES: FileType[] | [];
+    FORM: FormDataInputs | null;
     CUSTOMCAMPS: Record<string, unknown> | null;  // Defina um tipo mais específico se conhecer a estrutura
     created_at: string;
     updated_at: string;
+}
+
+export interface SectionDataObject {
+    sectionData: SectionData;
+}
+
+export interface SendFormData {
+    [key: string]: string | number | boolean | undefined; // Adapte conforme necessário
+    recaptchaToken?: string;
+}
+interface FormDataInputs {
+    FORM_ID: number;
+    NAME: string;
+    SUBJECT: string;
+    CLASSES: string;
+    EMAILS: string;
+    STATUS: number;
+    created_at: null;
+    updated_at: null;
+    BUTTON: string;
+    FORM_FIELDS: FormField[];
+}
+
+export interface FormField {
+    FORM_ITEM_ID: number;
+    FORM_ID: number;
+    CAMP: string;
+    TYPE: string;
+    ROWS: null;
+    WEB_KEY: null;
+    SECRET_KEY: null;
+    CUSTOM_CLASS: null;
+    FILE_LIMIT: null;
+    FILE_EXT: null;
+    IS_SUBJECT: number;
+    IS_EMAIL: number;
+    REQUIRED: number;
+    STATUS: number;
+    EMAIL_TEMPLATE: number;
+    ORDER: number;
+    created_at: null;
+    updated_at: null;
+    FORM_ITEM_LANG_ID: number;
+    LANGUAGE_ID: number;
+    LABEL: string;
+    PLACEHOLDER: null;
+    CAMPS_VALUES: null;
+    CAMPS_VALUE: CampsValue[];
+}
+
+export interface CampsValue {
+    CAMPS_VALUES_ID: number;
+    FORM_ITEM_LANG_ID: number;
+    LABEL: string;
+    VALUE: string;
+    created_at: null;
+    updated_at: null;
 }
 
 export interface Article {
@@ -151,6 +212,7 @@ export interface Article {
     FILES: FileType[] | [];
 }
 
+
 export interface FileType {
     ASSOCIATION: string;
     CODE: string;
@@ -161,10 +223,34 @@ export interface FileType {
     TYPE: string;
     FULL_URL: string;
 }
-
 interface Page {
     pageinfo: PageInfo;
     pagelang: PageLang[];
     sections: SectionData[];
     id: string;
+}
+
+export interface Article {
+    ARTICLE_ID: number;
+    CATEGORY: number;
+    TEAMPLATE: string;
+    STATUS: number;
+    DATE: string;
+    AUTHOR: string;
+    DESTAQUE: string;
+    ORDER: number;
+    CUSTOMCAMPS: string;
+    created_at: string;
+    updated_at: string;
+    ID: number;
+    LANGUAGE_ID: number;
+    NAME_SEO: string;
+    TEXT_SEO: string;
+    TEXT_2: string;
+    TEXT_3: string;
+    TEXT_4: string;
+    TEXT_5: string;
+    DESCRIPTION_SEO: string;
+    CUSTOMCAMPSLANGS: string;
+    FILES: FileType[] | [];
 }
