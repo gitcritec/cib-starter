@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-import FormInputRadio from "../utils/form/FormInputRadio"
+import FormInputRadio from "../utils/form/FormInputRadio";
 import FormInputRegular from "../utils/form/FormInputRegular";
 import FormSelect from "../utils/form/FormInputSelect";
 import FormInputTextarea from "../utils/form/FormInputTextarea";
