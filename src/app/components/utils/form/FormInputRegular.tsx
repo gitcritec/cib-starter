@@ -2,6 +2,7 @@ import { FormField } from "@/types";
 import FormInputErrorLabel from "./FormInputErrorLabel";
 import { UseFormRegister, FieldError, FieldValues, Merge, FieldErrorsImpl } from "react-hook-form";
 
+
 interface FormInputRegularProps {
     inputData: FormField;
     register: UseFormRegister<FieldValues>;

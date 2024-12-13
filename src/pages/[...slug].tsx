@@ -8,6 +8,7 @@ import { Metadata, PageApiComplete, PageInfo, SectionData } from "@/types";
 import Header from '@/app/components/layouts/header';
 import Footer from '@/app/components/layouts/footer';
 import Section from '@/app/components/layouts/section';
+import { TranslateProvider } from '../utils/TranslateContext';
 
 interface DynamicPageProps {
     content: PageApiComplete;
@@ -40,26 +41,26 @@ export default function DynamicPage({ content, metadata }: DynamicPageProps) {
                 <meta name="twitter:image" content={metadata.twitter.image} />
                 <meta name="twitter:site" content={metadata.twitter.site} />
             </Head>
-            {pageInfo.HEADER == 1 &&
-                <Header
-                    logo={content.config.LOGO || 'defaultLogo.png'}
-                    menus={content.all_menus || {}}
-                    allLangsActives={content.allLangsActives || {}}
-                    lang_id={content.lang_id}
-                />
-            }
-
-            {
-                page.sections &&
-                page.sections.map((section: SectionData) => (
-                    <Section
-                        key={section.SECTION_ID}
-                        sectionData={section}
+            <TranslateProvider initialTranslate={content.system_translate }>
+                {pageInfo.HEADER == 1 &&
+                    <Header
+                        logo={content.config.LOGO || 'defaultLogo.png'}
+                        menus={content.all_menus || {}}
+                        allLangsActives={content.allLangsActives || {}}
+                        lang_id={content.lang_id}
                     />
-                ))
-            }
-
-            {pageInfo.FOOTER == 1 && <Footer />}
+                }
+                {
+                    page.sections &&
+                    page.sections.map((section: SectionData) => (
+                        <Section
+                            key={section.SECTION_ID}
+                            sectionData={section}
+                        />
+                    ))
+                }
+                {pageInfo.FOOTER == 1 && <Footer />}
+            </TranslateProvider>
         </>
     );
 }

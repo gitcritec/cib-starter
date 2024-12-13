@@ -11,6 +11,8 @@ import FormInputTextarea from "../utils/form/FormInputTextarea";
 import FormSubmitMessage from "../utils/form/FormSubmitMessage";
 
 import { FormField, SectionDataObject, SendFormData } from "@/types";
+import { useTranslate } from "@/utils/TranslateContext";
+import { filterTranslateSystem } from "@/utils/crico";
 
 const FormBuilder = ({ sectionData }: SectionDataObject) => {
   
@@ -24,6 +26,11 @@ const FormBuilder = ({ sectionData }: SectionDataObject) => {
   const [serverMessage, setServerMessage] = useState({ message: "", status: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  
+  const { translate } = useTranslate();
+  // const translateArray = JSON.parse(translate); // Transforma a string JSON em um array
+  console.log(filterTranslateSystem(translate, 'recaptcha-fail'));
+
   if (!sectionData || !sectionData.FORM) {
     // Renderize algo diferente ou retorne null se não houver dados
     return <div>No form data available.</div>;
@@ -38,7 +45,8 @@ const FormBuilder = ({ sectionData }: SectionDataObject) => {
     }
     if (activeRecaptcha) {
       if (!recaptchaValue) {
-        setServerMessage({ message: "Please complete the reCAPTCHA verification.", status: false });
+        const translatedMessage = filterTranslateSystem(translate, 'recaptcha-fail');
+        setServerMessage({ message: translatedMessage, status: false });
         return;
       }
     }

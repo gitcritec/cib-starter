@@ -44,6 +44,7 @@ export interface PageApiComplete {
     lang_id: string;
     lang_slug: string;
     page: Page;
+    system_translate: TranslationItem[];
 }
 export interface ConfigItem {
     COMPANY_ID: string;
@@ -66,7 +67,7 @@ export interface LanguageSelectorProps {
 
 export interface MenuLang {
     MENU_LANG_ID: string;
-    MENU_ID: string;
+    MENU_ID: number;
     LANGUAGE_ID: string;
     M_NAME: string;
     URL: string;
@@ -253,4 +254,17 @@ export interface Article {
     DESCRIPTION_SEO: string;
     CUSTOMCAMPSLANGS: string;
     FILES: FileType[] | [];
+}
+
+export interface TranslationItem {
+    SYSTEM_ID: number;
+    KEY: string;
+    created_at: null;
+    updated_at: null;
+    SYSTEM_LANG_ID: number;
+    LANGUAGE_ID: number;
+    TRANSLATION: string;
+}
+export interface TranslationItemProp {
+    system_translate: TranslationItem;
 }
